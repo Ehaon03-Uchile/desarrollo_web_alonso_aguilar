@@ -1,5 +1,6 @@
-.oculto { 
-    display: none;
+.oculto,
+.oculto + br { 
+    display: none !important;
 }
 
 .bloque { 
@@ -52,7 +53,7 @@ th {
   background-color: #8a0303;
   color: white;
 }
-h1,h2,p,label,table {
+body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .tablaClickeable tr {

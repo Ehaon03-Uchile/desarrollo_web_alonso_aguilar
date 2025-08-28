@@ -7,34 +7,34 @@ function getRol() {
   return null;
 }
 
-const actualizarLabel = (label,textoA, textoE,show=false) => {
+const actualizarLabel = (labelRol,textoA, textoE,show=false) => {
   const rol = getRol();
-  const inputId = label.getAttribute("for"); // obtener id del input asociado
-  const input = document.getElementById(inputId)
-  const padre = label.parentNode;
+  const inputId = labelRol.getAttribute("for"); // obtener id del input asociado
+  const inputRol = document.getElementById(inputId)
+  const padre = labelRol.parentNode;
   
   if (!rol) {
-    label.textContent = "";
+    labelRol.textContent = "";
     return;
   }
 
   if (rol === "si") {
-    label.textContent = textoA;
-    label.classList.remove("oculto");
-    input.classList.remove("oculto");
+    labelRol.textContent = textoA;
+    labelRol.classList.remove("oculto");
+    inputRol.classList.remove("oculto");
 
     padre.classList.remove("oculto");
 
   } 
   else {
-    label.textContent = textoE;
-    label.classList.remove("oculto");
-    input.classList.remove("oculto");
+    labelRol.textContent = textoE;
+    labelRol.classList.remove("oculto");
+    inputRol.classList.remove("oculto");
 
     padre.classList.remove("oculto");
     if (show){
-        label.classList.add("oculto");
-        input.classList.add("oculto");
+        labelRol.classList.add("oculto");
+        inputRol.classList.add("oculto");
         
         padre.classList.remove("oculto");
     }
