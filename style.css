@@ -1,0 +1,82 @@
+.oculto { 
+    display: none;
+}
+
+.bloque { 
+    display: inline-block;
+}
+
+.pulse-effect {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #8a0303; 
+  transition: transform 0.3s ease-in-out;
+}
+
+.pulse-effect:hover {
+  background-color: #8a0303; 
+}
+
+.pulse-effect:active {
+  transform: scale(0.9); 
+}
+
+.shadow-effect {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #8a0303;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.shadow-effect:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); 
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+  table-layout: fixed;
+}
+th, td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+}
+th {
+  background-color: #8a0303;
+  color: white;
+}
+h1,h2,p,label,table {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.tablaClickeable tr {
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+tbody tr[tabindex] {
+  outline: none;
+}
+
+tbody tr:focus {
+  background: #e6f0ff;
+}
+.tablaClickeable tr:hover {
+  background-color: #700a0a; 
+  color: white;
+}
+
+tbody tr, tbody tr * {
+      -webkit-user-select: none; /* Safari/Chrome */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* IE10+ */
+      user-select: none;         /* estándar */
+      -webkit-touch-callout: none; /* evita menú contextual iOS */
+      -webkit-user-drag: none;
+    }
