@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #b4b3b3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.card {
+    background: #fff;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 400px;
+    text-align: center;
+    color: #222;
+    transition: background-color 0.4s ease, color 0.4s ease;
+
+    /* EFECTO DE ENTRADA */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* ===================== AVATARS ===================== */
+.avatar {
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background: gray;
+    display: inline-block;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    margin: 20px 0;
+}
+
+.avatar-container .avatar {
+    width: 320px;      
+    height: 240px;
+    object-fit: cover; 
+    cursor: pointer;
+    border-radius: 8px;
+    display: block;
+}
+
+#avatar-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;       
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+#avatar-modal img {
+    width: 800px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+#close-modal {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ===================== ENCABEZADOS ===================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+h1 { font-size: 2em; font-weight: 700; }
+h2 { font-size: 1.8em; font-weight: 700; }
+h3 { font-size: 1.6em; font-weight: 600; }
+h4 { font-size: 1.4em; font-weight: 600; }
+h5 { font-size: 1.2em; font-weight: 500; }
+h6 { font-size: 1em; font-weight: 500; }
+
+p {
+    margin: 5px 0;
+    color: #110d0d;
+}
+
+.info {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.info p {
+    margin: 8px 0;
+}
+
+/* ===================== BOTONES ===================== */
+.button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 5px;
+    color: white;
+    background-color: #8a0303;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: normal;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #700a0a;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+/* ===================== ANIMACIONES ===================== */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================== MODO OSCURO ===================== */
+body.dark-mode {
+    background-color: #121212;
+    color: #e6e6e6;
+}
+
+body.dark-mode .card {
+    background-color: #1f1f1f;
+    color: #e6e6e6;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #ffffff;
+}
+
+body.dark-mode p {
+    color: #ddd;
+}
