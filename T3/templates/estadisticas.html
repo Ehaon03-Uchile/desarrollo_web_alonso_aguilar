@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Estadísticas{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estadisticas.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2 class="section-title slide-in">Estadísticas</h2>
+
+<div class="contenedor-centrado fade-in stats-container">
+
+  <aside class="stats-sidebar">
+    <div class="sidebar-inner">
+      <div class="chart-buttons">
+        <button class="chart-btn active" data-chart="daily">Nuevos inscritos por día</button>
+        <button class="chart-btn" data-chart="by_type">Totales por tipo de cinturón</button>
+        <button class="chart-btn" data-chart="monthly"> Inscritos mensual por año</button>
+      </div>
+
+      <div class="sidebar-controls">
+        <label id="optDaysLabel" class="side-label">
+          Días:
+          <input id="optDays" type="number" min="7" max="365" value="30" />
+        </label>
+
+        <label id="optYearLabel" class="side-label" style="display:none;">
+          Año:
+          <input id="optYear" type="number" min="2000" max="2100" value="{{ current_year }}">
+        </label>
+      </div>
+    </div>
+  </aside>
+
+  <section class="stats-main">
+    <div class="chart-wrap">
+      <button id="reloadBtn" class="reloadBtn" title="Recargar datos">🔁</button>
+      <div id="chartContainer"></div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+
+{% endblock %}

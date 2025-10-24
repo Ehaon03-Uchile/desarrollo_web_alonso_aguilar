@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} Inicio {% endblock %}
+{%block extra_css%}{%endblock%}
+
+{% block content %}
+<h2 class="section-title slide-in">Inscritos más recientes</h2>
+
+{% if students %}
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Nombre Completo</th>
+        <th>Cinturón</th>
+        <th>Programa Regular</th>
+        <th>Programa Especial</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.index }}</td>
+        <td>{{ s.full_name }}</td>
+        <td>{{ s.cint }}</td>
+        <td>{{ s.regular_program }}</td>
+        <td>{{ s.special_program }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay estudiantes recientes.</p>
+{% endif %}
+
+<br><br>
+
+<!--a href="{{ url_for('agregar') }}" class="pulse-effect shadow-effect">Agregar ➕</a>
+<a href="{{ url_for('listado') }}" class="pulse-effect shadow-effect">Listado de estudiantes 📋</a-->
+
+{% endblock content %}
+
+{% block javascript %}
+{% endblock %}
