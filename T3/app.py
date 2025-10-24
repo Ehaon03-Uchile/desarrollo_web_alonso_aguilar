@@ -254,7 +254,6 @@ def api_listado():
         "total_pages": total_pages,
     }), 200
 
-
 # ------------------- Estudiante -----------------------------
 
 
