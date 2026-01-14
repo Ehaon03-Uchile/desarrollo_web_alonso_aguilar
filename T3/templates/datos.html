@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %} Detalle Estudiante {% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/datosStyle.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div id="avatar-modal">
+  <span id="close-modal">&times;</span>
+  <img id="avatar-large" alt="avatar2" src="{{ url_for('static', filename='uploads/' + (student.img_path if student else 'bekhoLogo.png')) }}">
+</div>
+
+<div class="student-layout">
+  <div class="card">
+    <div class="avatar-container">
+      <img src="{{ url_for('static', filename='uploads/' + (student.img_path if student else 'bekhoLogo.png')) }}" alt="Avatar" class="avatar">
+    </div>
+    <h1>{{ student.full_name }}</h1>
+    <p>Edad: {{ student.edad }}</p>
+    <p {% if not student.tiene_socialmedia %}hidden{% endif %} class="social-media">{{ student.social_media }}</p>
+
+    <div class="info">
+        <h3>Datos Secundarios</h3>
+        <p>Tiene apoderado: {{ 'Sí' if student.tiene_apoderado else 'No' }}</p>
+        <p {% if not student.tiene_apoderado %}hidden{% endif %}>Nombre Apoderado: {{ student.name_apoderado }}</p>
+        <p {% if not student.tiene_apoderado %}hidden{% endif %}>Apellidos Apoderado: {{ student.lastname_apoderado }}</p>
+        <p {% if not student.tiene_apoderado %}hidden{% endif %}>Rut Apoderado: {{ student.rut_apoderado }}</p>
+        <p>Teléfono {% if not student.tiene_apoderado %}Estudiante{% else %}Apoderado{% endif %}: {{ student.phone }}</p>
+        <p>Correo {% if not student.tiene_apoderado %}Estudiante{% else %}Apoderado{% endif %}: {{ student.email }}</p>
+        <br>
+        <h3>Programa de Entrenamiento</h3>
+        <p>Programa Regular: {{ student.regular_program }}</p>
+        <p>Programa Especial: {{ student.special_program }}</p>
+        <p>Grado Actual: {{ student.cint }}</p>
+        <p>Midterm: {{ student.midterm or 'No aplica' }}</p>
+        <br>
+        <h4 style="display: inline;">Número ATA:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.ata_num }}</p>
+        <br>
+        <h4 style="display: inline;">Número Bekho:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.bekho_num }}</p>
+        <br>
+        <h4 style="display: inline;">Tamaño del Cinturón:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.belt_size or 'N/A' }}</p>
+        <br>
+        <div {% if not student.last_exam_exists %}hidden{% endif %}> 
+        <h4 style="display: inline;">Último Examen:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.last_exam }}</p>
+        <br>
+        </div>
+    </div> <br><br>
+
+    <a href="{{ url_for('listado') }}" class="navbar-page">⬅ Volver a la lista</a>
+  </div>
+  
+  <div id="comments-section" data-student-id="{{ student.id if student else '' }}">
+    <button id="toggle-comments-btn" class="comments-toggle-btn" title="Mostrar/ocultar comentarios">💬</button>
+    
+    <div id="comments-panel" class="comments-panel" style="display: none;">
+      <div class="comments-header">
+        <h3>Comentarios</h3>
+        <button id="open-add-comment" class="add-comment-btn" title="Agregar comentario">＋</button>
+      </div>
+      <div id="comment-errors" class="comment-errors" style="display: none;"></div>
+      <div id="observaciones-list" class="observaciones-list">
+        <p id="comments-loading">Cargando...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="add-comment-overlay" class="add-comment-overlay" style="display: none;">
+  <div class="overlay-content">
+    <button id="close-add-overlay" class="overlay-close" title="Cerrar">✕</button>
+    <h3>Agregar Comentario</h3>
+    <form id="commentForm">
+      <label for="nombreComentario">Nombre:</label>
+      <input type="text" id="nombreComentario" name="nombre" required minlength="3" maxlength="80">
+      
+      <label for="textoComentario">Comentario:</label>
+      <textarea id="textoComentario" name="texto" required minlength="5" rows="4"></textarea>
+      
+      <div class="overlay-actions">
+        <button type="button" id="cancel-add-comment" class="button cancel">Cancelar</button>
+        <button type="submit" class="button submit">Agregar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/datos.js') }}"></script>
+<script src="{{ url_for('static', filename='js/comments.js') }}"></script>
+{% endblock %}

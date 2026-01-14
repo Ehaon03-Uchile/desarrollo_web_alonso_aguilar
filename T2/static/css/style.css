@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===================== OCULTOS Y BLOQUES ===================== */
+.oculto,
+.oculto + br { 
+    display: none !important;
+}
+
+.bloque { 
+    display: inline-block;
+}
+
+/* ===================== EFECTOS BOTONES ===================== */
+.pulse-effect, .shadow-effect, button.pulse-effect, button.shadow-effect,
+a.pulse-effect, a.shadow-effect {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 5px;
+    color: white !important; /* siempre blanco */
+    background-color: #8a0303;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: normal;
+    transition: all 0.3s ease-in-out;
+}
+
+.pulse-effect:hover, .shadow-effect:hover, button.pulse-effect:hover, button.shadow-effect:hover,
+a.pulse-effect:hover, a.shadow-effect:hover {
+    background-color: #700a0a; 
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.pulse-effect:active, .shadow-effect:active, button.pulse-effect:active, button.shadow-effect:active,
+a.pulse-effect:active, a.shadow-effect:active {
+    transform: scale(0.95); 
+}
+
+/* ===================== HR ===================== */
+hr {
+    border: 1px solid #8a0303;
+    margin: 15px 0 25px 0;
+}
+
+/* ===================== TABLAS ===================== */
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f5f5f5;
+    color: #222;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    table-layout: fixed;
+    font-size: 1em;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    background-color: #8a0303 !important; /* siempre rojo */
+    color: white !important;              /* siempre blanco */
+}
+
+/* Tablas clickeables */
+.tablaClickeable tr {
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.tablaClickeable tr:hover {
+    background-color: #700a0a; 
+    color: white;
+}
+
+body.dark-mode .tablaClickeable tr:hover {
+    background-color: #aa0000; /* rojo oscuro más visible */
+    color: white;
+}
+
+.tablaClickeable tr:hover td {
+    background-color: inherit;
+    color: inherit;
+}
+
+/* ===================== ANIMACIONES DE FILAS ===================== */
+table tbody tr {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+tbody tr[tabindex] {
+    outline: none;
+}
+
+tbody tr:focus {
+    background: #e6f0ff;
+}
+
+tbody tr, tbody tr * {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
+
+/* ===================== PAGINACIÓN ===================== */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.pagination a, .pagination .current-page {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: white !important;
+    background-color: #8a0303;
+    transition: all 0.3s ease-in-out;
+}
+
+.pagination a:hover {
+    background-color: #700a0a;
+}
+
+.pagination .current-page {
+    font-weight: bold;
+    pointer-events: none;
+    background-color: #000000;
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 1em;
+    margin: 1em;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #7a1e1e;
+    border: 0.15em solid #5c0202;
+    border-radius: 0.4em;
+    padding: 0.5em 1em;
+    font-family: 'Poppins', sans-serif;
+    flex: 1;
+    box-shadow: 0.3em 0.3em 0px 0px #3d0101;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-page {
+    background: #5c0202;
+    color: white !important; /* siempre blanco */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 2px 2px 0px #2e0101;
+    cursor: pointer;
+}
+
+.navbar-page:hover {
+    background-color: #a10606;
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0);
+}
+
+.navbar-page.active {
+    background-color: #080808;
+    color: #ddd !important;
+    pointer-events: none;
+}
+
+.navbar-logo {
+    background-color: #7a1e1e !important; /* siempre rojo oscuro */
+    border-color: #5c0202 !important;
+    border-radius: 0.4em;
+    padding: 0.5em 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0.3em 0.3em 0px 0px #3d0101 !important;
+}
+
+.navbar-logo img {
+    height: 63px;
+    object-fit: contain;
+}
+
+/*=================== Titulo ===========================*/
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #7a1e1e;
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+.section-title {
+  font-size: 1.6em;
+  font-weight: 700;
+  border-left: 6px solid #5c0202;
+  padding-left: 10px;
+  margin-bottom: 1em;
+}
+
+/*================== Animaciones ====================*/
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.slide-in {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== BOTÓN CIRCULAR DARK MODE ===== */
+.dark-mode-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.dark-mode-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #8a0303; /* rojo claro */
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none; /* no seleccionable */
+}
+
+.dark-mode-circle:active {
+    transform: scale(0.9);
+}
+
+/* Modo oscuro */
+body.dark-mode .dark-mode-circle {
+    background-color: #777; /* gris oscuro */
+    color: white;
+}
+
+/* ===================== MODO OSCURO ===================== */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar-container {
+    background-color: #121212;
+    border-color: #333;
+}
+
+body.dark-mode td {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+
+body.dark-mode .tablaClickeable tr:hover {
+    background-color: #aa0000;
+    color: white;
+}
+
+body.dark-mode .footer {
+    color: #ddd;
+}
+
+body.dark-mode .section-title {
+    color: #e6e6e6;
+    border-left-color: #b51a1a;
+}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Detalle Estudiante {% endblock %}
+{%block extra_css%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/datosStyle.css') }}">
+{%endblock%}
+
+{% block content %}
+
+    <div id="avatar-modal">
+    <span id="close-modal">&times;</span>
+    <img id="avatar-large" alt="avatar2" src="{{ url_for('static', filename='uploads/' + student.img_path) }}">
+    </div>
+
+<div class="card">
+    <div class="avatar-container">
+      <img src="{{ url_for('static', filename='uploads/' + student.img_path) }}" alt="Avatar" class="avatar">
+    </div>
+    <h1>{{ student.full_name }}</h1>
+    <p>Edad: {{ student.edad }}</p>
+
+    <div class="info">
+        <h3>Datos Secundarios</h3>
+        <p>Tiene apoderado: {{ 'Sí' if student.tiene_apoderado else 'No' }}</p>
+        <p {% if not student.tiene_apoderado %}hidden{% endif %}>Nombre Apoderado: {{ student.name_apoderado }}</p>
+        <p {% if not student.tiene_apoderado %}hidden{% endif %}>Apellidos Apoderado: {{ student.lastname_apoderado }}</p>
+        <p {% if not student.tiene_apoderado %}hidden{% endif %}>Rut Apoderado: {{ student.rut_apoderado }}</p>
+        <p>Teléfono Estudiante: {{ student.phone }}</p>
+        <p>Correo Estudiante: {{ student.email }}</p>
+        <br>
+        <h3>Programa de Entrenamiento</h3>
+        <p>Programa Regular: {{ student.regular_program }}</p>
+        <p>Programa Especial: {{ student.special_program }}</p>
+        <p>Grado Actual: {{ student.cint }}</p>
+        <p>Midterm: {{ student.midterm or 'No aplica' }}</p>
+        <br>
+        <h4 style="display: inline;">Número ATA:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.ata_num }}</p>
+        <br>
+        <h4 style="display: inline;">Número Bekho:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.bekho_num }}</p>
+        <br>
+        <h4 style="display: inline;">Tamaño del Cinturón:</h4>
+        <p style="display: inline; margin-left: 5px;">{{ student.belt_size or 'N/A' }}</p>
+        <br>
+    </div> <br><br>
+
+    <a href="{{ url_for('listado') }}" class="navbar-page">⬅ Volver a la lista</a>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/datos.js') }}"></script>
+{% endblock %}

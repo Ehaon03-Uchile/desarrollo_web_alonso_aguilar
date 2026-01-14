@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* ===================== FORMULARIO ===================== */
+form {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    border: 2px solid #8a0303;
+    border-radius: 10px;
+    padding: 25px 35px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    font-family: 'Inter', sans-serif;
+}
+
+form h2 {
+    color: #8a0303;
+    margin-top: 0;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+form hr {
+    border: 1px solid #8a0303;
+    margin: 15px 0 25px 0;
+}
+
+form label {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form select,
+form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #8a0303;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+}
+
+form input[type="file"] {
+    cursor: pointer;
+}
+
+form .radio-label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+form input[type="radio"] {
+    margin-right: 6px;
+}
+
+.contenedor-centrado {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;  
+}
+
+#val-box, #val-box-client {
+    border: 1px solid #8a0303;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 22px;
+    background-color: #fff0f0;
+    color: #222;
+}
+
+/* Mensajes de validación */
+#val-msg, #val-msg-client {
+    color: #8a0303;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+/* ===================== BOTÓN SUBMIT ===================== */
+form input[type="submit"] {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 5px;
+    color: white;
+    background-color: #8a0303;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: normal;
+    transition: all 0.3s ease-in-out;
+}
+
+form input[type="submit"]:hover {
+    background-color: #700a0a;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+form input[type="submit"]:active {
+    transform: scale(0.95);
+}
+
+/* ===================== MODO OSCURO ===================== */
+body.dark-mode form {
+    background: #1f1f1f;
+    border-color: #b51a1a;
+    color: #e6e6e6;
+}
+
+body.dark-mode form h2 {
+    color: #e6e6e6;
+}
+
+body.dark-mode form hr {
+    border-color: #b51a1a;
+}
+
+body.dark-mode form input,
+body.dark-mode form select {
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    border-color: #b51a1a;
+}
+
+body.dark-mode #val-box,
+body.dark-mode #val-box-client {
+    background-color: #2b0b0b;
+    color: #e6e6e6;
+}

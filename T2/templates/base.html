@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/bekhoLogoReal.ico') }}">
+    <title>{% block title %}{%endblock%}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    {% if request.endpoint != 'estudiante' %}
+        <div class="navbar-container fade-in">
+            <div class="navbar">
+                <div class="navbar-links">
+                    <a class="navbar-page {% if request.endpoint == 'index' %}active{% endif %}" href="{{ url_for('index') }}">Inicio 🏠</a>
+                    <a class="navbar-page {% if request.endpoint == 'listado' %}active{% endif %}" href="{{ url_for('listado') }}">Listado 📋</a>
+                    <a class="navbar-page {% if request.endpoint == 'agregar' %}active{% endif %}" href="{{ url_for('agregar') }}">Agregar ➕</a>
+                </div>
+            </div>
+            <div class="navbar-logo">
+                <img src="{{ url_for('static', filename='img/bekhoLogo.png') }}" alt="Logo Bekho">
+            </div>
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="dark-mode-toggle-wrapper fade-in">
+        <button id="darkModeToggle" class="dark-mode-circle">🌞</button>
+</div>
+
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/darkmode.js') }}"></script>
+    {% block javascript %}{% endblock %}
+</body>
+</html>

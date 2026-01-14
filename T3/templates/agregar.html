@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %} Agregar {% endblock %}
+{%block extra_css%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+{%endblock%}
+{% block content %}
+<h2 class="section-title slide-in">Formulario</h2>
+
+<div id="val-box"
+     class="{% if server_errors and server_errors|length > 0 %}{% else %}oculto{% endif %}"
+     data-server-errors='{{ server_errors|default([]) | tojson }}'>
+  <h2 id="val-msg">{% if server_errors and server_errors|length > 0 %}Errores en el formulario:{% else %}.{% endif %}</h2>
+  <ul id="val-list">
+    {% if server_errors and server_errors|length > 0 %}
+      {% for e in server_errors %}
+        <li>{{ e }}</li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+</div>
+
+<div id="val-box-client" class="oculto">
+  <h2 id="val-msg-client">&nbsp;</h2>
+  <ul id="val-list-client"></ul>
+</div>
+
+
+  <form name="form1" id="form1" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="client_validated" id="client_validated" value="0">
+
+    <h2>Datos Estudiante</h2>
+    <hr>
+    <label for="name">Nombre(s) Estudiante: </label>
+    <input type="text" name="name" id="name" minlength="4" maxlength="20" value="{{ form.name|default('') }}"><br>
+
+    <label for="lastname">Apellidos Estudiante: </label>
+    <input type="text" name="lastname" id="lastname" minlength="5" maxlength="30" value="{{ form.lastname|default('') }}"><br>
+
+    <label for="rutE">Rut Estudiante: </label>
+    <input type="text" name="rutE" id="rutE" placeholder="12.345.678-9" maxlength="12" value="{{ form.rutE|default('') }}"> <br>
+
+    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+    <input type="date" name="fechaNacimiento" id ="fechaNacimiento" value="{{ form.fechaNacimiento|default('') }}"><br>
+
+    <h2>Datos Secundarios</h2><hr>
+
+    <label> Tiene Apoderado? :
+        <input type="radio" name="rol" value="si" {% if form.get('rol') == 'si' %}checked{% endif %}> Si
+    </label>
+    <label>
+        <input type="radio" name="rol" value="no" {% if form.get('rol') == 'no' %}checked{% endif %}> No
+    </label> <br>
+
+    <span class="oculto">
+        <label for="nameA" id="nameALabel" class="oculto">Nombre Apoderado</label>
+        <input type="text" name="nameA" id="nameA" minlength="4" maxlength="10" class="oculto" value="{{ form.nameA|default('') }}">
+        <br>
+    </span>
+
+    <span class="oculto">
+        <label for="lastnameA" id="lastnameALabel" class="oculto">Apellidos Apoderado</label>
+        <input type="text" name="lastnameA" id="lastnameA" minlength="5" maxlength="18" class="oculto" value="{{ form.lastnameA|default('') }}">
+        <br>
+    </span>
+
+    <span class="oculto">
+        <label for="rutA" id="rutALabel" class="oculto">Rut Apoderado</label>
+        <input type="text" name="rutA" id="rutA" placeholder="12.345.678-9" maxlength="12" class="oculto" value="{{ form.rutA|default('') }}">
+        <br>
+    </span>
+
+    <label for="email" id="labelEmail" class="oculto">Email</label>
+    <input type="email" name="email" id="email" minlength="15" class="oculto" value="{{ form.email|default('') }}" placeholder="correo@ejemplo.com"><br>
+
+    <label for="phone" id="labelPhone" class="oculto">Teléfono</label>
+    <input type="tel" name="phone" id="phone" minlength="9" maxlength="9" class="oculto" value="{{ form.phone|default('') }}" placeholder="987654321"> <br>
+
+    <br><h2>Programa de Entrenamiento</h2><hr>
+
+    <label> Tipo de cinturón:
+        <input type="radio" name="claseCinturon" value="tiger" {% if form.claseCinturon=='tiger' %}checked{% endif %}> Cinturón Tiger
+    </label>
+    <label>
+        <input type="radio" name="claseCinturon" value="color" {% if form.claseCinturon=='color' %}checked{% endif %}> Cinturón de Color
+    </label>
+    <label>
+        <input type="radio" name="claseCinturon" value="negro" {% if form.claseCinturon=='negro' %}checked{% endif %}> Cinturón Negro
+    </label><br>
+
+    <span class="bloque oculto">
+      <label for="programaRegular" id="labelProgramaBase" class="oculto">Programa Regular:</label>
+      <select id="programaRegular" name="programaRegular" class="oculto">
+          <option value="">--Seleccione--</option>
+          <option value="TKD For KIDS" {% if form.programaRegular=='TKD For KIDS' %}selected{% endif %}>TKD For KIDS</option>
+          <option value="ADULTO" {% if form.programaRegular=='ADULTO' %}selected{% endif %}>TKD ADULTO</option>
+      </select>
+    </span><br>
+
+    <span class="bloque oculto">
+      <label for="programaEspecial" id="labelProgramaEsp" class="oculto">Programa Especial:</label>
+      <select id="programaEspecial" name="programaEspecial" class="oculto">
+          <option value="">--Seleccione--</option>
+          <option value="NO Aplica" {% if form.programaEspecial=='NO Aplica' %}selected{% endif %}>NO Aplica</option>
+          <option value="LEADERSHIP" {% if form.programaEspecial=='LEADERSHIP' %}selected{% endif %}>LEADERSHIP</option>
+          <option value="LEGACY" {% if form.programaEspecial=='LEGACY' %}selected{% endif %}>LEGACY</option>
+      </select>
+    </span><br>
+
+    <label for="cinturon" id="cinturonLabel">Grado Actual: </label>
+    <select id="cinturon" name="cinturon">
+        <option value="">--Seleccione--</option>
+    </select><br>
+
+    <span class="bloque oculto">
+        <label for="midterm" id="labelMidterm" class="oculto">Midterm:
+            <select id="midterm" name="midterm" class="oculto"></select>
+        </label>
+    </span>
+
+    <h2>Datos Federativos</h2><hr>
+
+    <label for="atanumber">Número ATA: </label>
+    <input type="text" name="atanumber" id="atanumber" placeholder="Si no tiene, coloque 0" maxlength="11" value="{{ form.atanumber|default('') }}">
+    <br>
+
+    <label for="bekhonumber">Número Bekho: </label>
+    <input type="text" name="bekhonumber" id="bekhonumber" placeholder="Si no tiene, coloque 0" value="{{ form.bekhonumber|default('') }}">
+    <br>
+
+    <label> Tamaño del Cinturón:
+        <input type="radio" name="size" value="Niño" {% if form.size=='Niño' %}checked{% endif %}>Niño
+    </label>
+    <label>
+        <input type="radio" name="size" value="Adulto" {% if form.size=='Adulto' %}checked{% endif %}>Adulto
+    </label><br>
+
+    <hr>
+
+    <label for="redsocial">Instagram:</label> <label for ="redsocial" style='color: gray; font-style: italic;'> [opcional]</label>
+    <input type="text" name="redsocial" id="redsocial" placeholder="@usuario" value="{{ form.redsocial|default('') }}"><br>
+
+    <label for="archivo">Foto Estudiante:</label> <label for ="archivo" style='color: gray; font-style: italic;'> [opcional]</label>
+    <input type="file" name="archivo" id="archivo" multiple accept=".jpg,.png,.jpeg"><br>
+    <span id="archivoMsg" class="bloque oculto"></span>
+
+    <br><br>
+    <!--a href="{{ url_for('index') }}" class="shadow-effect pulse-effect">⬅ Volver</a-->
+    <div class="contenedor-centrado">
+    <button id="enviarBtn" type="submit" class="navbar-page">Enviar ✔</button>
+    </div>
+  </form>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/date.js') }}"></script>
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/labelRol.js') }}"></script>
+<script src="{{ url_for('static', filename='js/select.js') }}"></script>
+<script src="{{ url_for('static', filename='js/preserve.js') }}"></script>
+{% endblock %}

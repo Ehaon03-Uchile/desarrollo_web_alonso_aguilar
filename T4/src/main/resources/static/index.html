@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avisos de Adopción</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <h1>Listado de Avisos de Adopción</h1>
+  <p>Haz clic en “Evaluar” para dejar una nota (1–7). La nota se guarda y el promedio se actualiza sin recargar.</p>
+
+  <p id="tabla-desc" class="sr-only">
+    Tabla con los avisos de adopción. Cada fila contiene ID, fecha, sector, cantidad, tipo, edad, comuna,
+    el promedio de notas y un botón para evaluar el aviso.
+  </p>
+
+  <table id="tabla-avisos" aria-describedby="tabla-desc">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Sector</th>
+        <th>Cantidad</th>
+        <th>Tipo</th>
+        <th>Edad</th>
+        <th>Comuna</th>
+        <th>Nota (promedio / #)</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="modal-eval" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-sub">
+    <div class="modal-content" role="document">
+      <h3 id="modal-title">Evaluar aviso</h3>
+      <p id="modal-sub">Selecciona una nota para el aviso.</p>
+
+      <label for="select-nota">Selecciona una nota (1-7):</label>
+      <select id="select-nota" aria-label="Nota">
+        <option value="">-- elige --</option>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option><option>6</option><option>7</option>
+      </select>
+
+      <div class="modal-actions">
+        <button id="cancel-btn" class="btn-secondary">Cancelar</button>
+        <button id="send-btn" class="eval">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
